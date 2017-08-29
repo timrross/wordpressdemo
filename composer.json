@@ -1,0 +1,69 @@
+{
+    "name": "timrross/wordpressdemo",
+    "description": "wordpressdemo Wordpress website",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tim Ross",
+            "email": "timrross@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "wecodemore/wpstarter": "~2.0",
+        "johnpbloch/wordpress": "^4.7.3",
+        "wpackagist-plugin/wp-migrate-db": "^1.0",
+        "wpackagist-plugin/reset-wp": "^1.1"
+    },
+    "config": {
+        "vendor-dir": "httpdocs/vendor"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "WCM\\WPStarter\\Setup::run"
+        ],
+        "post-update-cmd": [
+            "WCM\\WPStarter\\Setup::run"
+        ]
+    },
+    "extra": {
+        "wordpress-install-dir": "httpdocs/wp",
+        "wordpress-content-dir": "httpdocs/content",
+        "wpstarter": {
+            "prevent-overwrite": [
+                ".gitignore",
+                "httpdocs/wp-config.php",
+                "httpdocs/index.php"
+            ],
+            "gitignore": {
+                "wp": true,
+                "wp-content": true,
+                "vendor": true,
+                "common": true,
+                "custom": [
+                    "*.log",
+                    ".htaccess",
+                    "sitemap.xml",
+                    "sitemap.xml.gz"
+                ]
+            }
+        },
+        "installer-paths": {
+            "httpdocs/content/plugins/{$name}": [
+                "type:wordpress-plugin"
+            ],
+            "httpdocs/content/mu-plugins/{$name}": [
+                "type:wordpress-muplugin"
+            ],
+            "httpdocs/content/themes/{$name}": [
+                "type:wordpress-theme"
+            ]
+        }
+    }
+}
